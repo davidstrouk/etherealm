@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/.idea/*
+.codespell_ignore
+.pre-commit-config.yaml
+yarn.lock
