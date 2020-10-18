@@ -1,0 +1,40 @@
+{
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": { "jsx": true, "arrowFunctions": true }
+  },
+  "env": {
+    "jest": true,
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  },
+  "plugins": ["react-hooks"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+    "react/prop-types": 0,
+    "react/no-unescaped-entities": 0,
+    "react/display-name": 0,
+    "arrow-body-style": "error",
+    "no-return-await": "error",
+    "no-unused-vars": "error",
+    "no-useless-rename": "error",
+    "no-var": "error",
+    "object-shorthand": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "prefer-destructuring": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "require-await": "error",
+    "sort-imports": "error",
+    "spaced-comment": "error",
+    "yoda": "error"
+  }
+}
