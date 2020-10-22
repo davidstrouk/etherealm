@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    // maxWidth: 360,
+    marginTop: theme.spacing(5),
     backgroundColor: theme.palette.background.paper,
   },
 }));
@@ -51,14 +51,21 @@ export default function ItemsList({ allItems }) {
       hasMore={displayedItems.length !== allItems.length}
       loader="Loading..."
     >
-      <Grid container spacing={4} className={classes.root}>
+      <Grid
+        container
+        spacing={4}
+        justify="center"
+        alignItems="center"
+        className={classes.root}
+      >
         {displayedItems.map((value) => (
-          <ItemCard
-            key={value}
-            itemId={value}
-            handleToggle={handleToggle}
-            selectedItems={selectedItems}
-          />
+          <Grid key={value} item>
+            <ItemCard
+              itemId={value}
+              handleToggle={handleToggle}
+              selectedItems={selectedItems}
+            />
+          </Grid>
         ))}
       </Grid>{" "}
     </InfiniteScroll>

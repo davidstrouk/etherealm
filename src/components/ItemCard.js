@@ -6,15 +6,21 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Checkbox from "@material-ui/core/Checkbox";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import queryFromWikidata from "../api/Wikidata";
 import queryFromWikipedia from "../api/Wikipedia";
+import IconButton from "@material-ui/core/IconButton";
+import Grid from "@material-ui/core/Grid";
 const md5 = require("md5");
 const R = require("ramda");
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  cardContent: {
+    marginLeft: theme.spacing(-1),
+  },
   root: {
     maxWidth: 345,
   },
@@ -23,7 +29,7 @@ const useStyles = makeStyles({
     height: 200,
     objectFit: "contain",
   },
-});
+}));
 
 function getImageUrlFromImageObj(imageObj) {
   const name = imageObj.datavalue.value.replace(/ /g, "_");
@@ -128,30 +134,38 @@ export default function ItemCard({ itemId, handleToggle, selectedItems }) {
   }, [itemId]);
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} href={itemUrl} target="_blank">
       <CardActionArea>
         {imageUrl ? (
           <CardMedia className={classes.media} image={imageUrl} title={title} />
         ) : (
           <CircularProgress />
         )}
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
+        <CardContent className={classes.cardContent}>
+          <Grid container spacing={1} alignItems="center">
+            <Grid item>
+              <Checkbox
+                color="primary"
+                edge="end"
+                onChange={handleToggle(itemId)}
+                checked={selectedItems.includes(itemId)}
+              />
+            </Grid>
+            <Grid item>
+              <Typography variant="h6" component="h2">
+                {title}
+              </Typography>
+            </Grid>
+          </Grid>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary" href={itemUrl}>
-          View
-        </Button>
-        <Checkbox
-          edge="end"
-          onChange={handleToggle(itemId)}
-          checked={selectedItems.includes(itemId)}
-          // inputProps={{ 'aria-labelledby': labelId }}
-        />
-      </CardActions>
+      {/* <CardActions>*/}
+      {/*  <Grid container justify="right" alignItems="right">*/}
+      {/*    <IconButton href={itemUrl} target="_blank">*/}
+      {/*      <OpenInNewIcon color="primary" />*/}
+      {/*    </IconButton>*/}
+      {/*  </Grid>*/}
+      {/* </CardActions>*/}
     </Card>
   );
 }

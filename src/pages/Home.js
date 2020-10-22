@@ -16,10 +16,46 @@ function Home() {
 
   return (
     <div className={classes.root}>
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Button component={Link} to="/newGame" color="primary">
-          Create New Game
-        </Button>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        spacing={5}
+        style={{ minHeight: "100vh" }}
+      >
+        <Grid item>
+          <Button
+            component={Link}
+            variant="contained"
+            to="/newGame"
+            color="primary"
+          >
+            Create New Game
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            component={Link}
+            variant="contained"
+            disabled
+            to="/mintCollectibles"
+            color="primary"
+          >
+            Mint collectibles
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            component={Link}
+            variant="contained"
+            disabled
+            to="/upgradeGameContract"
+            color="primary"
+          >
+            Upgrade game contract
+          </Button>
+        </Grid>
       </Grid>
     </div>
   );

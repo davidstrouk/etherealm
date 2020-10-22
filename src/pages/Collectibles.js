@@ -7,19 +7,35 @@ import { useState } from "react";
 
 const useStyles = makeStyles(() => ({}));
 
-function Collectibles() {
-  const classes = useStyles();
+function Collectibles({ setStepCompleted }) {
+  const classes = useStyles({
+    root: {
+      width: "100%",
+    },
+  });
 
-  const [fromWikidata, setFromWikidata] = useState(false);
+  const [fromWikidata, setFromWikidata] = useState(true);
 
   return (
     <div className={classes.root}>
       <Grid container direction="column" justify="center" alignItems="center">
-        <Button onClick={() => setFromWikidata(!fromWikidata)} color="primary">
-          From Wikidata
-        </Button>
-        <Button color="primary">Manual</Button>
-        {fromWikidata && <FromWiki />}
+        <Grid container justify="center" alignItems="center" spacing={2}>
+          <Grid item>
+            <Button
+              variant="contained"
+              // onClick={() => setFromWikidata(!fromWikidata)}
+              color="primary"
+            >
+              From Wikidata
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" disabled color="primary">
+              Manual
+            </Button>
+          </Grid>
+        </Grid>
+        {fromWikidata && <FromWiki setStepCompleted={setStepCompleted} />}
       </Grid>
     </div>
   );
